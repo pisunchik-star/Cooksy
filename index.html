@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cooksy — рецепты на каждый день</title>
+    <meta
+      name="description"
+      content="Cooksy — сайт с вкусными рецептами, идеями для ужина и подборками блюд на любой вкус."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <div class="logo" aria-label="Cooksy logo">
+          <span class="logo-mark">C</span>
+          <span>Cooksy</span>
+        </div>
+
+        <nav class="nav" aria-label="Главная навигация">
+          <a href="#recipes">Рецепты</a>
+          <a href="#categories">Категории</a>
+          <a href="#about">О нас</a>
+        </nav>
+
+        <div class="header-actions">
+          <button
+            class="icon-btn"
+            id="themeToggle"
+            type="button"
+            aria-label="Включить тёмную тему"
+            title="Переключить тему"
+          >
+            <span aria-hidden="true">☾</span>
+          </button>
+          <button class="header-btn" id="accountButton" type="button">
+            Войти
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-text">
+            <span class="badge">#вкусно и просто</span>
+            <h1>Готовьте вкусно без лишних усилий</h1>
+            <p>
+              Откройте подборку рецептов на каждый день: завтраки, супы,
+              десерты, ужины и идеи для гостей.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#recipes" class="primary-btn">Смотреть рецепты</a>
+              <button
+                class="secondary-btn"
+                id="shareRecipeButton"
+                type="button"
+              >
+                ＋ Поделиться рецептом
+              </button>
+            </div>
+
+            <ul class="stats" aria-label="Статистика">
+              <li><strong>1200+</strong><span>рецептов</span></li>
+              <li><strong>4.9/5</strong><span>оценка</span></li>
+              <li><strong>24/7</strong><span>подсказки</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-card">
+            <div class="recipe-highlight">
+              <img
+                src="https://images.unsplash.com/photo-1597692493647-35763cb92183?auto=format&fit=crop&w=900&q=85"
+                alt="Кремовая паста с грибами"
+              />
+              <div class="recipe-badge">Популярно сегодня</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="search-section container" id="recipes">
+        <div class="search-box">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Найти рецепт, ингредиент или блюдо..."
+            aria-label="Поиск рецептов"
+          />
+          <button id="searchButton" type="button">Поиск</button>
+        </div>
+      </section>
+
+      <section class="categories container" id="categories">
+        <div class="section-heading">
+          <span class="mini-label">Категории</span>
+          <h2>Выбирайте по настроению</h2>
+        </div>
+
+        <div class="category-grid">
+          <button class="category-card" type="button" data-all-recipes>
+            <span>🍽️</span>
+            <h3>Все блюда</h3>
+          </button>
+          <button class="category-card" type="button" data-category="Завтрак">
+            <span>🥐</span>
+            <h3>Завтраки</h3>
+          </button>
+          <button class="category-card" type="button" data-category="Салат">
+            <span>🥗</span>
+            <h3>Салаты</h3>
+          </button>
+          <button class="category-card" type="button" data-category="Суп">
+            <span>🍲</span>
+            <h3>Супы</h3>
+          </button>
+          <button class="category-card" type="button" data-category="Паста">
+            <span>🍝</span>
+            <h3>Паста</h3>
+          </button>
+          <button class="category-card" type="button" data-category="Десерт">
+            <span>🍰</span>
+            <h3>Десерты</h3>
+          </button>
+          <button class="category-card" type="button" data-category="Главное">
+            <span>🍖</span>
+            <h3>Главное</h3>
+          </button>
+        </div>
+      </section>
+
+      <section class="recipes container">
+        <div class="section-heading">
+          <span class="mini-label">Рекомендации</span>
+          <h2>Самые вкусные блюда недели</h2>
+        </div>
+
+        <div class="recipe-grid" id="recipeGrid" aria-live="polite"></div>
+        <button
+          class="more-recipes"
+          id="showAllRecipes"
+          type="button"
+          aria-label="Показать все блюда"
+          title="Показать все блюда"
+        >
+          •••
+        </button>
+      </section>
+
+      <section class="about container" id="about">
+        <div class="about-card">
+          <div>
+            <span class="mini-label">Почему Cooksy</span>
+            <h2>Рецепты, которые хочется повторять</h2>
+          </div>
+          <p>
+            Cooksy помогает находить простые и вкусные блюда без долгих поисков.
+            Мы собираем проверенные идеи для ужина, завтрака, перекусов и
+            праздников.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="logo" aria-label="Cooksy logo">
+          <span class="logo-mark">C</span>
+          <span>Cooksy</span>
+        </div>
+        <p>© 2026 Cooksy. Вкусно и просто.</p>
+      </div>
+    </footer>
+
+    <div
+      class="modal hidden"
+      id="authModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="authTitle"
+    >
+      <div class="modal-backdrop" data-close-modal></div>
+      <section class="modal-panel">
+        <button
+          class="modal-close icon-btn"
+          type="button"
+          aria-label="Закрыть"
+          data-close-modal
+        >
+          ×
+        </button>
+        <span class="mini-label">Cooksy community</span>
+        <h2 id="authTitle">Рады вас видеть</h2>
+        <div class="auth-tabs" role="tablist" aria-label="Вход или регистрация">
+          <button class="auth-tab active" type="button" data-auth-mode="login">
+            Войти
+          </button>
+          <button class="auth-tab" type="button" data-auth-mode="register">
+            Регистрация
+          </button>
+        </div>
+        <form id="authForm" class="modal-form">
+          <label class="register-only hidden"
+            >Ваше имя<input name="name" autocomplete="name" minlength="2"
+          /></label>
+          <label
+            >Email<input
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+          /></label>
+          <label
+            >Пароль<input
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              minlength="6"
+              required
+          /></label>
+          <p class="form-message" id="authMessage" role="status"></p>
+          <button class="primary-btn" type="submit" id="authSubmit">
+            Войти
+          </button>
+        </form>
+        <p class="privacy-note">
+          Демо-аккаунт хранится только в этом браузере и не является защищённой
+          онлайн-регистрацией.
+        </p>
+      </section>
+    </div>
+
+    <div
+      class="modal hidden"
+      id="recipeModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="recipeModalTitle"
+    >
+      <div class="modal-backdrop" data-close-modal></div>
+      <section class="modal-panel">
+        <button
+          class="modal-close icon-btn"
+          type="button"
+          aria-label="Закрыть"
+          data-close-modal
+        >
+          ×
+        </button>
+        <span class="mini-label">Ваш рецепт</span>
+        <h2 id="recipeModalTitle">Поделитесь вкусным</h2>
+        <form id="recipeForm" class="modal-form">
+          <label>Название<input name="title" maxlength="70" required /></label>
+          <label
+            >Категория
+            <select name="category" id="recipeCategory" required>
+              <option value="Завтрак">Завтрак</option>
+              <option value="Салат">Салат</option>
+              <option value="Суп">Суп</option>
+              <option value="Паста">Паста</option>
+              <option value="Десерт">Десерт</option>
+              <option value="Главное">Главное</option>
+            </select>
+          </label>
+          <div class="category-creator-controls">
+            <button
+              class="secondary-btn"
+              id="createCategoryToggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="categoryCreator"
+            >
+              ＋ Создать категорию
+            </button>
+          </div>
+          <div class="category-creator hidden" id="categoryCreator">
+            <label
+              >Название категории<input
+                id="newCategoryName"
+                type="text"
+                maxlength="30"
+                placeholder="Например, Домашняя выпечка"
+              />
+            </label>
+            <fieldset class="category-visibility">
+              <legend>Кто сможет использовать категорию?</legend>
+              <label>
+                <input
+                  type="radio"
+                  name="categoryVisibility"
+                  value="public"
+                  checked
+                />
+                <span>Публичная</span>
+              </label>
+              <label>
+                <input type="radio" name="categoryVisibility" value="private" />
+                <span>Приватная</span>
+              </label>
+            </fieldset>
+            <p class="privacy-note">
+              Приватная категория доступна только вам. Рецепты в ней не видны
+              остальным посетителям.
+            </p>
+            <button class="primary-btn" id="saveRecipeCategory" type="button">
+              Добавить категорию
+            </button>
+            <p class="form-message" id="categoryMessage" role="status"></p>
+          </div>
+          <label
+            >Время приготовления<input
+              name="time"
+              type="text"
+              placeholder="Например, 30 минут"
+              maxlength="30"
+              required
+          /></label>
+          <label
+            >Ингредиенты с количеством<textarea
+              name="ingredients"
+              rows="5"
+              maxlength="1200"
+              placeholder="Например: Мука — 200 г&#10;Молоко — 250 мл"
+              required
+            ></textarea>
+          </label>
+          <label
+            >Шаги приготовления<textarea
+              name="steps"
+              rows="5"
+              maxlength="2000"
+              placeholder="Каждый шаг с новой строки"
+              required
+            ></textarea>
+          </label>
+          <label
+            >Коротко о блюде (необязательно)<textarea
+              name="description"
+              rows="2"
+              maxlength="180"
+              placeholder="Пара слов о вкусе или подаче"
+            ></textarea>
+          </label>
+          <label
+            >Прикрепить фото
+            <input
+              name="photoFile"
+              id="recipePhotoFile"
+              type="file"
+              accept="image/*"
+            />
+          </label>
+          <div class="photo-preview hidden" id="recipePhotoPreview">
+            <img
+              id="recipePhotoPreviewImage"
+              alt="Предпросмотр фотографии блюда"
+            />
+            <button class="secondary-btn" id="removeRecipePhoto" type="button">
+              Убрать фото
+            </button>
+          </div>
+          <label
+            >Или вставьте ссылку на фото<input
+              name="imageUrl"
+              type="url"
+              placeholder="https://..."
+          /></label>
+          <p class="form-message" id="recipeMessage" role="status"></p>
+          <button class="primary-btn" type="submit">Опубликовать рецепт</button>
+        </form>
+      </section>
+    </div>
+
+    <div
+      class="modal hidden"
+      id="detailModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="detailTitle"
+    >
+      <div class="modal-backdrop" data-close-modal></div>
+      <article class="modal-panel detail-panel">
+        <button
+          class="modal-close icon-btn"
+          type="button"
+          aria-label="Закрыть"
+          data-close-modal
+        >
+          ×
+        </button>
+        <img class="detail-image" id="detailImage" alt="" />
+        <div class="detail-content">
+          <div class="meta-row">
+            <span id="detailCategory"></span><span id="detailTime"></span>
+          </div>
+          <h2 id="detailTitle"></h2>
+          <p id="detailDescription"></p>
+          <h3>Ингредиенты</h3>
+          <ul class="detail-list" id="detailIngredients"></ul>
+          <h3>Приготовление</h3>
+          <ol class="detail-list detail-steps" id="detailSteps"></ol>
+          <p class="detail-author" id="detailAuthor"></p>
+        </div>
+      </article>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
